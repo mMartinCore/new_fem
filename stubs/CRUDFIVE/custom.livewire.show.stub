@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\{{}};
+use Livewire\Component; 
+class index extends Component
+{ 
+
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};   
+
+    /**
+     * Loads the model data
+     * of this component.
+     *
+     * @return void
+     */
+    public function loadModel()
+    {
+        $data = {{}}::findOrfail($this->modelId); 
+       
+        // Assign the variables here
+
+        $this->{{}} = $data->{{}};
+        $this->{{}} = $data->{{}};
+        $this->{{}} = $data->{{}};
+        $this->{{}} = $data->{{}};
+        $this->{{}} = $data->{{}};
+
+    }
+
+    /**
+     * The data for the model mapped
+     * in this component.
+     *
+     * @return void
+     */
+    public function modelData()
+    {
+        return
+              [  
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}}, 
+            ];
+    }
+
+    
+    public function render()
+    {
+
+        $data = 
+        return view('livewire.{{}}s.show', [
+            'data' =>  $data ,
+        ]);
+    }
+}

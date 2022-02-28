@@ -1,0 +1,89 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\{{}};
+use Livewire\Component; 
+use Livewire\WithFileUploads;
+
+class create  extends Component
+{ 
+
+    use WithFileUploads;
+
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};
+
+    public $images;
+
+    
+    
+   // public function mount($data=null){
+
+   // }
+
+
+    /**
+     * Put your custom public properties here!
+     */
+
+    /**
+     * The validation rules
+     *
+     * @return void
+     */
+    public function rules()
+    {
+        return [ 
+             '{{}}' => 'required|min:3|max:100',
+             '{{}}' => 'required|min:3|max:100',
+             '{{}}' => 'required|min:3|max:100', 
+             '{{}}' => 'required|min:3|max:100',
+             '{{}}' => 'required|min:3|max:100',        
+        ];
+    }
+
+
+    /**
+     * The data for the model mapped
+     * in this component.
+     *
+     * @return void
+     */
+    public function modelData()
+    {
+        return
+              [  
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}}, 
+            ];
+    }
+
+  
+    public function create()
+    {
+       $this->validate();
+
+       $dataInfo = {{}}::create($this->modelData());  
+                     
+       if($this->images!=null && isset($this->images)){         
+          $dataInfo->addMedia($this->images->getRealPath())->toMediaCollection('images');    
+       }
+      
+       session()->flash('message', '{{}}  successfully created.');      
+       return redirect()->route('{{}}.index');
+
+    }
+
+   
+    public function render()
+    {      
+        return view('livewire.{{}}.create');
+    }
+}

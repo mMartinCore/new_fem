@@ -1,0 +1,239 @@
+<x-jet-form-section submit="update">
+    <x-slot name="title">
+        {{ __(' Update Details') }}
+    </x-slot>
+
+    <x-slot name="description">
+        {{ __('Update detail information.') }}
+    </x-slot>
+
+    <x-slot name="form"> 
+
+      <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+        
+       {{--
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+     
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+       --}}
+       {{--
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+     
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+       --}}
+       {{--
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+     
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+       --}}
+      
+        {{--
+         <div class="col-span-6 sm:col-span-6">
+                    <x-filepond
+                wire:model="images"
+                multiple
+                allowImagePreview
+                imagePreviewMaxHeight="200"
+                allowFileTypeValidation
+                acceptedFileTypes="['image/png','image/jpg','image/jpeg','image/*']"
+                allowFileSizeValidation
+                maxFileSize="2mb"/>
+         </div>
+        --}}
+        {{--
+         <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+         --}}
+        
+        {{--
+         <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+         --}}
+
+        {{-- <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div> 
+        --}}
+
+       {{-- 
+       <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+       
+         <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+         --}}
+
+         
+       {{-- 
+       <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+       
+         <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+         --}}
+
+       {{--
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+         --}}
+        {{--
+         <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+         --}}
+        {{--
+         <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+         --}}
+        
+        {{--
+         <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-textarea   wire:model.defer="{{}}" id="" class="block mt-1 w-full"  autofocus type="text" ></x-textarea> 
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div> 
+
+        <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-textarea   wire:model.defer="{{}}" id="" class="block mt-1 w-full"  autofocus type="text" ></x-textarea> 
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div> 
+          --}}
+        
+          {{--
+    
+      
+         <div class="col-span-6 sm:col-span-6">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="{{}}" autofocus />
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div>
+        
+         <div class="col-span-6 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('{{}}') }}" />
+                 <select  wire:model.defer="{{ __('{{}}') }}" class="block appearance-none rounded-md w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <option value="">Options1</option>
+                    <option value="">Option2</option>
+                </select>                
+            <x-jet-input-error for="{{}}" class="mt-2" />
+        </div> 
+       --}}
+        {{--
+          <div class="col-span-6 sm:col-span-3">
+                <x-jet-label for="name" value="{{ __('DATEPICKER1') }}" />   
+            
+                <x-jet-input  class="mt-1 block w-full  "
+                placeholder="{{ __('MM/DD/YYYY')}}" 
+                id="DATEPICKER1" 
+                wire:model="DATEPICKER1"
+                type="text"  
+                autocomplete="off"            
+                data-provide="datepicker"
+                data-date-autoclose="true"
+                data-date-format='MM/DD/YYYY' 
+                data-date-today-highlight="true"                        
+                onchange="this.dispatchEvent(new InputEvent('input'))"
+                autofocus />
+                <x-jet-input-error for="DATEPICKER1" class="mt-2" />
+            <script>  
+                /*
+                SET DATEPICKER ID
+                new Pikaday({ field: document.getElementById('var7') , 'format': 'MM/DD/YYYY', firstDay: 1, minDate: new Date()})*/
+                new Pikaday({ field: document.getElementById('DATEPICKER1') , 'format': 'MM/DD/YYYY', firstDay: 1, minDate: new Date()})
+                </script>
+            </div>  
+          --}}
+            
+            
+        {{--
+        <div class="col-span-6 sm:col-span-6">
+             <x-filepond
+                wire:model="images"
+                multiple
+                allowImagePreview
+                imagePreviewMaxHeight="200"
+                allowFileTypeValidation
+                acceptedFileTypes="['image/png','image/jpg','image/jpeg','image/*']"
+                allowFileSizeValidation
+                maxFileSize="2mb"/>
+        </div> 
+        --}}
+
+
+        {{-- END --}}
+
+    </x-slot>
+
+    <x-slot name="actions">
+        <x-back-btn-link url="contactsettings.index" class="mr-2" >
+            {{ __('Back') }}
+        </x-back-btn-link>
+
+         <x-jet-button>
+            {{ __('Update') }}
+        </x-jet-button>
+    </x-slot>
+    
+</x-jet-form-section>

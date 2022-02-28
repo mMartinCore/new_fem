@@ -1,0 +1,132 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\{{}};
+use Livewire\Component; 
+use Livewire\WithFileUploads;
+
+class {{}}Comp extends Component
+{ 
+    use WithFileUploads;
+   
+    protected {{}} $model_data;
+  
+    public $modelId;
+  
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};
+    public  ${{}};
+
+    public $images;
+
+
+    /**
+     * Put your custom public properties here!
+     */
+
+    /**
+     * The validation rules
+     *
+     * @return void
+     */
+    public function rules()
+    {
+        return [ 
+             '{{}}' => 'required|min:3|max:100',
+             '{{}}' => 'required|min:3|max:100',
+             '{{}}' => 'required|min:3|max:100', 
+             '{{}}' => 'required|min:3|max:100',
+             '{{}}' => 'required|min:3|max:100',        
+        ];
+    }
+
+
+    
+
+    /**
+     * Loads the model data
+     * of this component.
+     *
+     * @return void
+     */
+    public function loadModel()
+    {
+        $data = $this->model_data; 
+       
+        // Assign the variables here
+
+        $this->{{}} = $data->{{}};
+        $this->{{}} = $data->{{}};
+        $this->{{}} = $data->{{}};
+        $this->{{}} = $data->{{}};
+        $this->{{}} = $data->{{}};
+
+    }
+
+    /**
+     * The data for the model mapped
+     * in this component.
+     *
+     * @return void
+     */
+    public function modelData()
+    {
+        return
+              [  
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}},
+                '{{}}' => $this->{{}}, 
+            ];
+    }
+
+
+    /**
+     * The update function
+     *
+     * @return void
+     */
+
+    public function update()
+    {
+       $this->validate();
+       $data_saved = {{}}::findOrfail($this->modelId)->update($this->modelData());
+        
+       if($this->images!=null && isset($this->images)){ 
+
+            if(isset($data_saved->image_name)) {
+
+                $data_saved->image_name->delete();
+
+            }   
+
+          $data_saved->addMedia($this->images->getRealPath())->toMediaCollection('images');
+
+        }
+
+       session()->flash('message', '{{}}  successfully updated.');      
+       return redirect()->route('{{}}.index');
+
+    }
+
+
+
+     public function mount({{}} ${{}})
+    {
+        $this->model_data = ${{}};
+        $this->modelId=this->model_data->id;
+        $this->loadModel(); 
+    }
+
+ 
+
+    public function render()
+    {
+ 
+        return view('livewire.{{}}.edit');
+    }
+}
