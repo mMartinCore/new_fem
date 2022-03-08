@@ -16,15 +16,20 @@
                 <div class="flex flex-col items-center justify-center mb-8">
                  <a href="/" class="justify-center  items-center content-center" >
                
-                <img width="188" height="74" src="{{ session('client_team')->logo !='' ? 
-                    session('client_team')->logo->getUrl('thumbnail'):
-                    asset('images/header-logo.png') 
+                <img width="188" height="74" src="{{
+                   session()->has('client_team') ?
+                           session('client_team')->logo !='' ?  session('client_team')->logo->getUrl('thumbnail') : asset('images/header-logo.png') 
+                            :  asset('images/header-logo.png') 
                 }}" class="block  h-38   w-38    object-fit  rounded-lg     " alt="shipping logo">
                
                 </a>
                 <div class="text-center text-2xl text-gray-800 mb-4 p-4 uppercase">
-                {{session('client_team')->domain !='' ? 
-                    session('client_team')->domain:"fempirefreight"}}
+                {{
+                                session()->has('client_team')?
+                 session('client_team')->domain !=''?  session('client_team')->domain :"fempirefreight"
+                 
+                 :"fempirefreight"
+                    }}
                 </div>
                 </div>
 
@@ -70,7 +75,7 @@
                         <select name="country_id"
                             class="block appearance-none rounded-md w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                             <option value="">Select Country</option>
-                            @foreach (\App\models\Country::all() as $country)
+                            @foreach (\App\Models\Country::all() as $country)
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
                         </select>

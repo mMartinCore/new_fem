@@ -40,7 +40,7 @@ class packageList extends Component
     public array $selected = [];
  
     public $user_id = null;
-
+    public $team_id = '';
 
     public function mount($user_id = null)
     { 
@@ -167,7 +167,7 @@ class packageList extends Component
             'name' => $this->name.' '.$letter.$num,
             'packagestatus_id' => Packagestatus::STATUS_PENDING,
             'user_id' =>  $this->user_id !=null ?  $this->user_id : auth()->user()->id,
-            'team_id' => $this->team_id !=null ? $this->team_id : auth()->user()->team_id, 
+            'team_id' => $this->team_id !=null? $this->team_id : auth()->user()->team_id, 
          
         ]);
 
@@ -180,7 +180,9 @@ class packageList extends Component
             $merge->packages()->attach($this->selected);
         });
         } catch (\Exception $exception) {
-            return back()->with('error', $exception->getMessage());
+            dd($exception);
+            session()->flash('error', $exception->getMessage());   
+            return url()->previous();;
         }
         $this->modalConfirmMergeVisible = false;
         $this->resetPage();
@@ -197,8 +199,7 @@ class packageList extends Component
 
         
  
-        if(auth()->user()->hasRole('Customer')){
-                    dd('Customer'); 
+        if(auth()->user()->hasRole('Customer')){ 
             $data = $this->search ==''? Package::where('user_id',  auth()->user()->id)
 
             ->where('courier_status','!=', 'Merged')
@@ -231,8 +232,7 @@ class packageList extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'desc':'asc')->paginate($this->perPage);
 
         }elseif(auth()->user()->hasRole('Admin')){
-            dd('Admin');
-
+         
             $data = $this->search ==''? Package::where('user_id',  auth()->user()->id)
 
             ->where('courier_status','!=', 'Merged')

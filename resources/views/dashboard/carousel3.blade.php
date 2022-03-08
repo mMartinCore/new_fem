@@ -5,9 +5,10 @@
                         class="mb-6 text-2xl font-bold tracking-tighter  text-center text-black lg:text-left lg:text-2xl title-font">
                         FEMPIREfreight shipping is hassle-free and our rates are as transparent as it gets.
                     </h1>
-                    @if (session('client_team')->carousel_txt_2 !='')
+                    @if (session()->has('client_team'))
                             <p class="flex items-center mb-2 text-gray-700  text-lg font-medium leading-loose">
-                                {{ session('client_team')->carousel_txt_2 }}
+                                   {{session('client_team')->carousel_txt_2!=''? session('client_team')->carousel_txt_2:' Package Consolidation and Fast Worldwide Delivery.'}} 
+                            
                             </p>
                     @else
                     <p class="flex items-center mb-2 text-gray-600"><span
@@ -49,7 +50,10 @@
                 </div>
                 <div class="max-w-lg  lg:max-w-lg lg:w-full md:w-1/2 mr-4">
                     <img class="object-fit object-center rounded-lg h-80 w-full  "  
-                        src="{{ session('client_team')->carousel_img_2 !='' ?  session('client_team')->carousel_img_2->getUrl('preview_thumbnail'): asset('images/2.png') }}" alt="Femempire">
+                        src="{{ session()->has('client_team')  ? 
+                         session('client_team')->carousel_img_2 !=''? session('client_team')->carousel_img_2->getUrl('preview_thumbnail') : asset('images/2.png')
+                         
+                         : asset('images/2.png') }}" alt="Femempire">
                  </div>
             </div>
         </section>

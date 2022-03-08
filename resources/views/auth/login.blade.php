@@ -2,34 +2,35 @@
 
 
     <!-- component -->
-    <div class="h-full bg-gradient-to-tl from-site_color_theme to-gray-600 w-full py-16 px-4">
-        {{-- <div class="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4"> --}}
-    
-        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+    <div class="h-full bg-gradient-to-tl from-site_color_theme to-gray-600 w-full py-16 px-4"> 
 
-        <div class="flex flex-col items-center justify-center">
-           
-         
+        <div class="flex flex-col items-center justify-center"> 
 
             <div class="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-8">
 
                 <div class="flex flex-col items-center justify-center mb-4">
                  <a href="/" class="justify-center  items-center content-center" >
                
-                <img width="188" height="74" src="{{ session('client_team')->logo !='' ? 
-                    session('client_team')->logo->getUrl('thumbnail'):
-                    asset('images/header-logo.png') 
+                <img width="188" height="74" src="{{  
+                       session()->has('client_team') ?
+                       session('client_team')->logo !=''  ? session('client_team')->logo->getUrl('thumbnail') 
+                             : asset('images/header-logo.png') 
+                            :  asset('images/header-logo.png') 
                 }}" class="block  h-38   w-38    object-fit  rounded-lg     " alt="shipping logo">
                
                 </a>
                 <div class="text-center text-2xl text-gray-800 mb-4 p-4 uppercase">
-                {{session('client_team')->domain !='' ? 
-                    session('client_team')->domain:"fempirefreight"}}
+                {{ 
+                     session()->has('client_team')?
+                 session('client_team')->domain !=''?  session('client_team')->domain :"fempirefreight"
+                 
+                 :"fempirefreight"
+                 }}
                 </div>
                 </div>
 
 
-                <p tabindex="0" class="focus:outline-none text-2xl font-extrabold leading-6 mb-4 text-gray-800">Welcome back shop and savings!</p>
+                <p tabindex="0" class="focus:outline-none text-2xl font-extrabold leading-6 mb-4 text-gray-800">Welcome back shop and save!</p>
               
                  <x-jet-validation-errors class="mb-4" />
                 @if (session('status'))

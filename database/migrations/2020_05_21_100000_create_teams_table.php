@@ -31,6 +31,7 @@ class CreateTeamsTable extends Migration
             $table->string('twitter_link')->nullable();
             $table->longText('content')->nullable();
             $table->longText('content_link')->nullable();
+            $table->foreignId('country_id')->nullable();
             
             $table->string('prefix')->nullable();
             $table->string('content_title')->nullable();

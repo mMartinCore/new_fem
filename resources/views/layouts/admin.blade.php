@@ -22,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-            <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
         <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">   
         <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
         <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
@@ -42,11 +42,12 @@
         <div class="flex flex-col flex-1 w-full ">
             @include('layouts.navigation-dropdown')
             <main class="h-full overflow-y-auto">
+     
              @if(session('error'))
                         <div class="w-full bg-red-200 text-red-600 border rounded p-4" role="alert">{{ session('error') }}</div>
-                    @endif
+             @endif
 
-            @if (session()->has('message'))
+             @if (session()->has('message'))
                <div x-data="{ open: true }">
                <div x-show="open" x-transition id="toast-default" class="flex items-center mt-4 w-full max-w-md p-3 pr-4 ml-4 bg-green-400 shadow-xl  
                         text-gray-100  rounded-lg   dark:text-gray-400 dark:bg-green-800" role="alert">
@@ -62,18 +63,13 @@
                             
                         <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
-                </div>
-            </div>
-            
-             @endif
+                  </div>
+               </div>            
+              @endif
                 {{ $slot }}
             </main>
         </div>
-{{-- 
-    <script src="{{asset('js/charts-lines.js')}}" defer></script>
-    <script src="{{asset('js/charts-pie.js')}}" defer></script>
-    <script src="{{asset('js/charts-bars.js')}}" defer></script> --}}
-
+ 
         @stack('modals')
 
         @livewireScripts

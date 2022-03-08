@@ -16,8 +16,10 @@
                                          <a href="/" class="inline-flex items-center px-1 pt-0 pb-2 ">
 
                                              <!-- LOG -->
-                                             <img  src="{{ session('client_team')->logo !='' ? 
-                                                        session('client_team')->logo->getUrl('preview_thumbnail'):
+                                             <img  src="{{ session()->has('client_team') ? 
+                                                             session('client_team')->logo  !='' ? 
+                                                              session('client_team')->logo->getUrl('preview_thumbnail'): asset('images/header-logo.png') 
+                                                    :
                                                         asset('images/header-logo.png') 
                                                       }}" class="block w-auto h-32" alt="shipping logo">
 
@@ -30,8 +32,8 @@
                                  </h2>
 
                                  <p class="text-gray-400 py-4">
-                                     @if (session('client_team')->logo_title !='')
-                                         {{ session('client_team')->logo_title }}                                         
+                                     @if (session()->has('client_team') )
+                                         {{ session('client_team')->logo_title  }}                                         
                                      @else                                         
                                      Hartlepool Enterprise Centre, Brougham Terrace, Unit 33, Hartlepool,TS248EY.
                                      @endif
@@ -127,7 +129,9 @@
                          <div class="flex mt-6">
                              <i style="background-color: #3B5998;"
                                  class="flex items-center justify-center h-12 w-12 mr-1 rounded-full fab fill-current text-white text-xl fa-facebook-f">
-                                 <a   href="{{ session('client_team')->fackbook_link !='' ? 'https://www.facebook.com/'.session('client_team')->fackbook_link                            
+                                 <a   href="{{ session()->has('client_team')  ?                                   
+                                     session('client_team')->fackbook_link  !='' ? 
+                                     session('client_team')->fackbook_link  : 'https://www.facebook.com/'.session('client_team')->fackbook_link                            
                                  :'https://www.facebook.com/fempirefreight'}}" 
                                      class="text-white hover:text-blue-500">
                                      <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -149,7 +153,9 @@
                                  class="flex items-center justify-center h-12 w-12 mx-1 rounded-full fab fill-current text-white text-xl fa-instagram">
 
                                  <a 
-                                 href="{{ session('client_team')->instagram_link !='' ? 'https://www.instagram.com/'.session('client_team')->instagram_link                            
+                                 href="{{ session()->has('client_team')  ?
+                                         session('client_team')->instagram_link  !='' ? 
+                                         session('client_team')->instagram_link  : 'https://www.instagram.com/'.session('client_team')->instagram_link                            
                                  :'https://www.instagram.com/fempirefreight'}}"  
                                      class="  text-white hover:text-blue-500">
                                      <svg fill="none" stroke="currentColor" stroke-linecap="round"
@@ -165,7 +171,9 @@
 
                              <i style="background-color:#55ACEE;"
                                  class="flex items-center justify-center h-12 w-12 mx-1 rounded-full fab fill-current text-white text-xl fa-twitter">
-                                 <a href="{{ session('client_team')->twitter_link !='' ? 'https://twitter.com/'.session('client_team')->twitter_link                            
+                                 <a href="{{ session()->has('client_team')  ?
+                                       session('client_team')->twitter_link  !='' ? 
+                                       session('client_team')->twitter_link  : 'https://twitter.com/'.session('client_team')->twitter_link                            
                                  :'https://twitter.com/fempirefreight'}}" class="  text-white hover:text-blue-500">
                                      <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                          stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
@@ -179,7 +187,11 @@
                              <i style="background-color:#fff;"
                                  class="flex items-center justify-center h-12 w-12 mx-1 rounded-full fab fill-current text-white text-xl fa-twitter">
                                  <a href="
-                                 {{ session('client_team')->whatsapp_link !='' ?  session('client_team')->whatsapp_link                               
+                                 {{ session()->has('client_team')
+                                  ? 
+                                        session('client_team')->whatsapp_link !='' ? 
+                                        session('client_team')->whatsapp_link  :'https://api.whatsapp.com/send?phone=447717750364&text=I am requesting information about FEMPIREfreight Service'
+
                                  :'https://api.whatsapp.com/send?phone=447717750364&text=I am requesting information about FEMPIREfreight Service'}}" 
 
                                  

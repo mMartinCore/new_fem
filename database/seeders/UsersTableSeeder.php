@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
                 // 'uuid'           =>Uuid::generate()->string, 
                 'email'          => 'mlm@vorkkloc.com',
                 'name'           =>'Marvin Martin',
-                
+                'country_id'               =>1,                
                 'password'       => bcrypt('password'),
                 'remember_token' => null,  
             ],

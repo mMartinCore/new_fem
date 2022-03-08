@@ -72,7 +72,7 @@ class Package extends Model  implements HasMedia
         parent::boot();
         static::creating(function($model){
         
-         $team = Team::findorfail(session('client_team')->id);
+         $team = Team::findorfail(auth()->user()->team_id);
         
          $model->package_id = $team->prefix.str_pad($team->max_number + 1, 6, '0', STR_PAD_LEFT);
          $team->increment('max_number');

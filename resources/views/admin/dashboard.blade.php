@@ -204,10 +204,10 @@ var category_name = '<?=$category_name?>';
 var data_count = JSON.parse('{!!$category_count!!}');
 var data_name = JSON.parse('{!!$category_name!!}');
 
-const data = {
+const data_chart = {
     labels: data_name,
     datasets: [{
-        label: 'My First dataset',
+        label: ' Catergory Chart Data',
         borderColor: 'rgb(25, 98, 132)',
         data: data_count,
         backgroundColor: [
@@ -224,7 +224,7 @@ const data = {
 
 const config = {
     type: 'doughnut',
-    data: data,
+    data: data_chart,
     options: {
         aspectRatio: 1,
         responsive: true,

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
-use App\models\Team;
+use App\Models\Team;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Cache;
@@ -20,52 +20,54 @@ class subdomain
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
-
-        //$subdomain = Route::input('subdomain');
-         $subdomain = $request->route()->parameter('subdomain');
-         
-         $routeName=   Route::currentRouteName() ;
+    {      
+             
       
+        if ( $request->route()->parameter('subdomain')) {         
+           
+           //$subdomain = Route::input('subdomain');
+            $subdomain = $request->route()->parameter('subdomain');
+         
+            $routeName=   Route::currentRouteName(); 
        
+            if ($routeName!='livewire.message') {
+                //dd($subdomain, Route::currentRouteName() );
+                session(['subdomain' => $subdomain ]);
+                
+                $subdomain = Team::where('domain', $subdomain)->first();
+               
+                if ($subdomain ) { 
+                    session(['client_team' => $subdomain ]);  
+                }elseif(  $request->route()->parameter('subdomain')=="fempire_live"){                    
+                    
+                    return redirect()->route('welcome', ['noBranch' => "nonBranch"]);
+                } 
+                else{
+                    return redirect()->route('welcome', ['noBranch' => "nonBranch"]);
+                }            
+             
+            }
+
+            URL::defaults(['subdomain' => $routeName=='livewire.message' ?  session('subdomain') : $request->route()->parameter('subdomain')]);
+ 
+            return $next($request);
+        } 
+
+        $routeName=   Route::currentRouteName(); 
 
         if ($routeName!='livewire.message') {
-         //   dd($subdomain, Route::currentRouteName() );
-              session(['subdomain' => $subdomain ]);
-              $subdomain = Team::where('domain',$subdomain)->firstorFail();
-              session(['client_team' => $subdomain ]);
-             
-            //   if ( $subdomain->carousel_img_2 !='') {
-                 
-            //  dd( $subdomain->carousel_txt_1);
-            //   }
 
+            Session::forget('client_team');
+            // $subdomain = Team::findorFail(1);
+            // session(['client_team' => $subdomain ]);
+            URL::defaults(['subdomain' => 'FEMPIRE_LIVE']);                
+
+        }else{
+            URL::defaults(['subdomain' => $routeName=='livewire.message' ?  session('subdomain') : $request->route()->parameter('subdomain')]);
+           
         }
+ 
 
-        URL::defaults(['subdomain' => $routeName=='livewire.message' ?  session('subdomain') :$request->route()->parameter('subdomain')]) ;
-
-      
-     
-
-    // if ($subdomain!=null) {
-    //     $domain = Cache::remember('team_'.$subdomain, 1, function() use ($subdomain) {
-    //         return Team::where('domain',$subdomain)->firstorFail();
-    //     });
-    //     Session::put('subdomain', $domain->domain);
-    //     dd($subdomain ,  Session::get('subdomain'));  
-    // }
-    
-     
-          
-        
-         
-      
-        
-        
-       
-   // if($subdomain == 'vorkkloc'){
-        //     return $next($request);
-        // }
         return $next($request);
     }
 }

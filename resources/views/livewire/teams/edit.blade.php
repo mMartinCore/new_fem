@@ -172,7 +172,18 @@
             <x-jet-input type="text" class="mt-1 block w-full" wire:model.defer="carousel_text_3" autofocus />
             <x-jet-input-error for="carousel_text_3" class="mt-2" />
         </div>
-        
+     <div class="col-span-6  sm:col-span-3">
+        <x-jet-label for="name" value="{{ __(' Country') }}" />
+        <select  wire:model.defer="country_id" 
+            class="block appearance-none rounded-md w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+            <option value="">Select Country</option>
+            @foreach (\App\Models\Country::all() as $country)
+                <option value="{{ $country->id }}">{{ $country->name }}</option>
+            @endforeach
+        </select>
+        <x-jet-input-error for="country_id" class="mt-2" />
+    </div>
+
         @if ($team_carousel_img_3!='') 
             <div class="col-span-6 sm:col-span-6 mb-2"> 
                 <x-jet-label for="name" value="{{ __(' Carousel image (3)') }}" />
@@ -194,24 +205,26 @@
                 maxFileSize="2mb"/>
          </div>
 
+ 
+
       
      @hasrole('Super')
 
-       <div class="col-span-6 sm:col-span-6">
-            <x-jet-label for="name" value="{{ __('Virtual # inital') }}" />
-            <x-textarea   wire:model.defer="virtual_number" id="" class="block mt-1 w-full"  autofocus type="text" ></x-textarea> 
+       <div class="col-span-3 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('Virtual # inital 5000') }}" />
+            <x-input   wire:model.defer="virtual_number" id="" class="block mt-1 w-full"  autofocus type="text" ></x-input> 
             <x-jet-input-error for="virtual_number" class="mt-2" />
         </div>
 
-       <div class="col-span-6 sm:col-span-6">
+      <div class="col-span-3 sm:col-span-3">
             <x-jet-label for="name" value="{{ __('Prefix eg.FF') }}" />
-            <x-textarea   wire:model.defer="prefix" id="" class="block mt-1 w-full"  autofocus type="text" ></x-textarea> 
+            <x-input   wire:model.defer="prefix" id="" class="block mt-1 w-full"  autofocus type="text" ></x-input> 
             <x-jet-input-error for="prefix" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-6">
-            <x-jet-label for="name" value="{{ __('Max # for package') }}" />
-            <x-textarea   wire:model.defer="max_number" id="" class="block mt-1 w-full"  autofocus type="text" ></x-textarea> 
+         <div class="col-span-3 sm:col-span-3">
+            <x-jet-label for="name" value="{{ __('Max # for package eg. inital 400 ') }}" />
+            <x-input   wire:model.defer="max_number" id="" class="block mt-1 w-full"  autofocus type="text" ></x-input> 
             <x-jet-input-error for="max_number" class="mt-2" />
         </div>
 

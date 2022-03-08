@@ -56,6 +56,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'phone' => $input['phone'],
             'address' => $input['address'],
+            'team_id' => $team->id,
             'country_id'=> $input['country_id'],
             'city'=> $input['city'],
             'virtual_number'=> $virtual_number,

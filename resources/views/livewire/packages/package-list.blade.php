@@ -20,6 +20,7 @@
   }
 </style>
 <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6"> 
+  <x-jet-input-error for="error" class="mt-2" />
     <a   class="text-lg leading-6 font-medium text-gray-900 mr-12 pr-8">
        {{$user}}
     </a> 

@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Country;
+use App\Models\Contactsetting;
+use Spatie\MediaLibrary\HasMedia;
 use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
-use Laravel\Jetstream\Team as JetstreamTeam;
-use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Laravel\Jetstream\Team as JetstreamTeam;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Contactsetting;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Team extends JetstreamTeam  implements HasMedia
 {
@@ -52,6 +53,7 @@ class Team extends JetstreamTeam  implements HasMedia
         'max_number',
         'prefix',
         'virtual_number',
+        'country_id',
 
 
     ];
@@ -102,7 +104,9 @@ class Team extends JetstreamTeam  implements HasMedia
         return $this->hasOne(Contactsetting::class);
     }
 
-
+    public function country(){
+        return $this->belongsTo( Country::class,'country_id');
+    }
 
 
     public function registerMediaConversions(Media $media = null): void

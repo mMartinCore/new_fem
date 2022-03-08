@@ -122,8 +122,7 @@ class mergeList extends Component
 
     public function render()
     {
-        if (auth()->user()->hasRole('Customer')) {
-            dd('Customer');
+        if (auth()->user()->hasRole('Customer')) { 
             $data = $this->search == '' ? Merge::where('user_id', auth()->user()->id)->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
                 ->paginate($this->perPage)
                 :

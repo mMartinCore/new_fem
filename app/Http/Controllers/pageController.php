@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\contactMessage;
 use Illuminate\Http\Request;
 use App\Models\Contactsetting;
+
+use Illuminate\Support\Facades\Mail;
+
 class pageController extends Controller
 {
  
@@ -40,11 +44,37 @@ class pageController extends Controller
         return view('pages.abouts.about');
     }
 
+
+    public function sendMessage(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required|max:100|min:4',
+            'message' => 'required|string|min:7|max:255'
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'link' => url()->current()
+           ];
+  
+     try {
+        Mail::to('lordvorkkloc@gmail.com')->send(new contactMessage($data)); 
+        return redirect()->back()->with('message', 'Your message has been sent successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Your message could not be sent try again later');
+        }
+    } 
+    
     public function contact()
      {
-         $contact= new Contactsetting();
-        if (session('client_team')->id!='') {
-           
+         $contact= new Contactsetting;
+        if (session()->has('client_team')) {
+          // dd(session('client_team')->id);  
             $contact = Contactsetting::where('team_id', session('client_team')->id)->first();
           
         }

@@ -35,8 +35,8 @@ class edit extends Component
     public  $carousel_text_3;
     public  $team_carousel_img_3;
     public  $personal_team;
-    public  $var21;
-    public $images;
+    public  $country_id;
+    public  $images;
 
     public  $logo;
     public  $carousel_img_1;
@@ -79,10 +79,10 @@ class edit extends Component
             'carousel_img_2' => 'image|nullable|max:1999', 
             'carousel_text_3' => 'nullable|string|min:3|max:180', 
             'carousel_img_3' => 'image|nullable|max:1999', 
-
-            'virtual_number' => 'integer|string|min:1|max:9',
-            'prefix' => 'nullable|string|min:1|max:4', 
-            'max_number' => 'integer|string|min:1|max:9',  
+            'country_id' => 'required|integer',
+            'virtual_number' => 'integer|min:1',
+            'prefix' => 'required|min:1|max:4', 
+            'max_number' => 'integer|min:1',  
 
         ];
     }
@@ -121,6 +121,7 @@ class edit extends Component
         $this->team_carousel_img_2 = $data->carousel_img_2;
         $this->carousel_text_3 = $data->carousel_text_3;
         $this->team_carousel_img_3 = $data->carousel_img_3; 
+        $this->country_id = $data->country_id;       
 
         $this->prefix = $data->prefix;
         $this->virtual_number = $data->virtual_number;
@@ -151,10 +152,10 @@ class edit extends Component
               'carousel_txt_1' => $this->carousel_txt_1, 
               'carousel_txt_2' => $this->carousel_txt_2, 
               'carousel_text_3' => $this->carousel_text_3, 
-
-                'prefix' => $this->prefix,
-                'virtual_number' => $this->virtual_number,
-                'max_number' => $this->max_number,
+              'country_id' => $this->country_id,
+              'prefix' => $this->prefix,
+              'virtual_number' => $this->virtual_number,
+              'max_number' => $this->max_number,
       ];
 
     }
@@ -184,7 +185,7 @@ class edit extends Component
                     'carousel_txt_1' => $this->carousel_txt_1, 
                     'carousel_txt_2' => $this->carousel_txt_2, 
                     'carousel_text_3' => $this->carousel_text_3, 
-
+                    'country_id' => $this->country_id,
                     'prefix' => $this->prefix,
                     'virtual_number' => $this->virtual_number,
                     'max_number' => $this->max_number,
@@ -201,7 +202,7 @@ class edit extends Component
 
     public function update()
     {
-        
+       
        $this->validate();
        $update = Team::findOrfail($this->modelId);
        $update->update($this->updateData());

@@ -31,7 +31,7 @@ class create  extends Component
     public  $carousel_text_3;
     public  $team_carousel_img_3;
     public  $personal_team;
-    public  $var21; 
+    public  $country_id; 
     public $images;
 
     
@@ -76,10 +76,10 @@ class create  extends Component
             'team_carousel_img_2' => 'image|nullable|max:1999', 
             'carousel_text_3' => 'nullable|string|min:3|max:180', 
             'team_carousel_img_3' => 'image|nullable|max:1999',  
-            
-            'virtual_number' => 'integer|string|min:1|max:9',
-            'prefix' => 'nullable|string|min:1|max:4', 
-            'max_number' => 'integer|string|min:1|max:9',  
+            'country_id' => 'required|integer',            
+            'virtual_number' => 'integer|min:1',
+            'prefix' => 'required|min:1|max:4', 
+            'max_number' => 'integer|min:1',    
      
         
 
@@ -115,6 +115,7 @@ class create  extends Component
                 'carousel_text_3' => $this->carousel_text_3, 
                 'user_id' => auth()->user()->id,
                 'personal_team' => false,
+                'country_id' => $this->country_id,
 
                 'prefix' => $this->prefix,
                 'virtual_number' => $this->virtual_number,

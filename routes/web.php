@@ -30,11 +30,37 @@ use App\Http\Controllers\MergeCheckoutChargeController;
 use App\Http\Controllers\TeamController as AppTeamController;  
 
 
+use App\Http\Controllers\PackageController;  
+use App\Http\Controllers\BuyformeController;  
+use App\Http\Controllers\CategoryController;   
+use App\Http\Controllers\CountryController;  
+use App\Http\Controllers\MergeController;  
+use App\Http\Controllers\PackagestatusController; 
+use App\Http\Controllers\UserController; 
+
+
+
 Route::domain('{subdomain:domain}.'.config('app.short_url'))->group(function ($subdomain) { 
 
+    
+
+    
+      
  
 route::get('home', [HomeController::class,'index'])->name('home');
     
+Route::get('pages/about',[pageController::class, 'about'])->name('pages.about');
+  
+Route::get('pages/contact',[pageController::class, 'contact'])->name('pages.contact'); 
+Route::get('pages/rates',[pageController::class, 'rates'])->name('pages.rates');
+Route::get('pages/refund',[pageController::class, 'refund'])->name('pages.refund');
+Route::get('pages/price',[pageController::class, 'price'])->name('pages.price');
+Route::get('pages/shipping-policy',[pageController::class, 'shippingPolicy'])->name('pages.shipping-policy');
+
+Route::get('pages/privacy',[pageController::class, 'privacy'])->name('pages.privacy');
+Route::get('pages/term_condition',[pageController::class, 'term_condition'])->name('pages.term_condition');
+Route::post('pages/sendMessage',[pageController::class, 'sendMessage'])->name('pages.sendMessage'); 
+
     Route::get('/', function ($subdomain) {
  
  
@@ -53,17 +79,7 @@ route::get('home', [HomeController::class,'index'])->name('home');
     });
  
      
-    Route::get('pages/about',[pageController::class, 'about'])->name('pages.about');
-    Route::get('pages/contact',[pageController::class, 'contact'])->name('pages.contact'); 
-    Route::get('pages/rates',[pageController::class, 'rates'])->name('pages.rates');
-    Route::get('pages/refund',[pageController::class, 'refund'])->name('pages.refund');
-    Route::get('pages/price',[pageController::class, 'price'])->name('pages.price');
-    Route::get('pages/shipping-policy',[pageController::class, 'shippingPolicy'])->name('pages.shipping-policy');
 
-    Route::get('pages/privacy',[pageController::class, 'privacy'])->name('pages.privacy');
-    Route::get('pages/term_condition',[pageController::class, 'term_condition'])->name('pages.term_condition');
- 
-    
     // Route::post('contacts/sendmail',[sendEmailController::class, 'mail'])->name('send.mail');        
  
 
@@ -117,21 +133,45 @@ route::get('home', [HomeController::class,'index'])->name('home');
 
         require_once __DIR__.'/setting.php';
 
-        $filesName = File::files(base_path().'\routes\generateRoutes\\');
-        $arr = [];
-        foreach ($filesName as $file) {
-            $ex = explode("\\"  , $file); 
-            array_push($arr , $ex[count($ex) - 1]);
-            } 
-        foreach($arr as $file) {
-            require_once __DIR__.'/generateRoutes/'.$file;
+        // $filesName = File::files(base_path().'\routes\generateRoutes\\');
+        // $arr = [];
+        // foreach ($filesName as $file) {
+        //     $ex = explode("\\"  , $file); 
+        //     array_push($arr , $ex[count($ex) - 1]);
+        //     } 
+        // foreach($arr as $file) {
+        //     require_once __DIR__.'/generateRoutes/'.$file;
 
-        }
+        // }
+
+
+
+        Route::resource('packagestatuss',PackagestatusController::class);
+        Route::get('merges/merge-list/{id?}', [MergeController::class, 'index'])->name('merges.merge-list');
+        Route::resource('merges',MergeController::class)->except(['index']);
+        Route::get('merges/merge-list/{id?}', [MergeController::class, 'index'])->name('merges.merge-list');
+        Route::resource('merges',MergeController::class)->except(['index']);
+        Route::resource('countries',CountryController::class);
+        Route::get('buyformes/payment-intent/{id}', [BuyformeController::class, 'paymentIntent'])->name('buyformes.payment-intent');
+        Route::post('buyformes/buyformePost', [BuyformeController::class, 'buyformePost'])->name('buyforme.buyformePost');
+        Route::get('buyformes/index/{id?}', [BuyformeController::class, 'index'])->name('buyformes.index');
+        Route::resource('buyformes',BuyformeController::class)->except(['index']);
+        Route::resource('categories',CategoryController::class);
+        Route::resource('contactsettings',ContactsettingController::class);
+        Route::get('users/user-list/{id?}', [UserController::class, 'userList'])->name('users.user-list');
+        Route::resource('users',UserController::class)->except(['index','create']);
+  
+        route::get('packages/list/{id?}', [PackageController::class, 'list'])->name('packages.list');
+        Route::resource('packages',PackageController::class);
+        
+          
+
+
+
+
        
 
-        Route::get('/dashboard', function ($subdomain) {
-
-
+        Route::get('/dashboard', function ($subdomain) { 
 
             //$package=  package::where('user_id',auth()->user()->id)->get();
   
@@ -192,7 +232,32 @@ route::get('home', [HomeController::class,'index'])->name('home');
 
 
  
+Route::domain( config('app.short_url'))->group(function () {
 
+    route::get('home', [HomeController::class,'index'])->name('home');
+    
+    Route::get('/{noBranch?}', function ($noBranch=null) {  
+        
+        if (!session()->exists('branches')) {
+             $branches = Team::get(); 
+            session(['branches'=>$branches]);
+        } 
+        $noBranch=$noBranch ;
+        return view('welcome')->with('noBranch',$noBranch);
+    })->name('welcome');
+     
+    Route::get('pages/about',[pageController::class, 'about'])->name('pages.about');
+    Route::get('pages/contact',[pageController::class, 'contact'])->name('pages.contact'); 
+    // Route::post('pages/sendMessage',[pageController::class, 'sendMessage'])->name('pages.sendMessage'); 
+    Route::get('pages/rates',[pageController::class, 'rates'])->name('pages.rates');
+    Route::get('pages/refund',[pageController::class, 'refund'])->name('pages.refund');
+    Route::get('pages/price',[pageController::class, 'price'])->name('pages.price');
+    Route::get('pages/shipping-policy',[pageController::class, 'shippingPolicy'])->name('pages.shipping-policy');
+
+    Route::get('pages/privacy',[pageController::class, 'privacy'])->name('pages.privacy');
+    Route::get('pages/term_condition',[pageController::class, 'term_condition'])->name('pages.term_condition');
+
+}); 
  
 
 
